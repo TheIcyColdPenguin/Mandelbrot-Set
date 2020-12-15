@@ -46,3 +46,18 @@ Click [here](https://theicycoldpenguin.github.io/Mandelbrot-Set/) to try it out 
 <img src="readme-assets/img-5.png"/><br /><br />
 <img src="readme-assets/img-6.png"/><br /><br />
 <img src="readme-assets/img-7.png"/><br /><br />
+
+<br /><br />
+
+# Interested in tinkering?
+
+You'll need to know the TypeScript programming language. It is easy enough to pick up, especially if you already know JavaScript.  
+You could alternatively try to directly edit the JavaScript file in the project.
+
+To run the program from your own computer
+
+-   Download the zip file
+-   Unzip to a folder
+-   Open the index.html file with any web browser
+
+That's it!
