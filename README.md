@@ -1,6 +1,7 @@
-# Mandelbrot Set
+# The Mandelbrot Set
 
-I'm Vinayak Vineeth, and this is my submission for the Mathematics Art integration project.
+I'm Vinayak Vineeth, and this is my submission for the Mathematics Art integration project.  
+The math concept used in the project is the topic of complex numbers
 
 <img src="readme-assets/img-1.png"/>
 
@@ -29,8 +30,10 @@ Click [here](https://theicycoldpenguin.github.io/Mandelbrot-Set/) to try it out 
         or
     -   press the "+" and "-" keys on your keyboard
 
--   To change the resolution of the render, drag the Max iterations slider around.
+-   To change the resolution of the render, drag the "Max iterations" slider around.
     -   Do note that slower computers might have trouble handling higher resolutions.
+    -   An interesting activity would be to move the slider all the way to the left, and slowly nudge it to the right.  
+        This allows you to see how the image gets more detailed as the number of iterations increases.
 
 <br /><br />
 
