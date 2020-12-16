@@ -46,6 +46,7 @@ Click [here](https://theicycoldpenguin.github.io/Mandelbrot-Set/) to try it out 
 <img src="readme-assets/img-5.png"/><br /><br />
 <img src="readme-assets/img-6.png"/><br /><br />
 <img src="readme-assets/img-7.png"/><br /><br />
+<img src="readme-assets/img-8.png"/><br /><br />
 
 <br /><br />
 
