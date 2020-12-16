@@ -1,6 +1,6 @@
 declare const p5: any;
 
-const sketch = new p5((p: any) => {
+const sketch = new p5((p: any): void => {
     // useful interfaces
 
     interface Complex {
@@ -21,12 +21,14 @@ const sketch = new p5((p: any) => {
     let maxIterations = 50;
     let escapeRadius = 500;
     let zoomValue = 0;
+    const zoomStart = Math.log(1e-10);
+    const zoomStop = Math.log(2.3);
 
-    // sliders to adjust above variables
+    // slider to adjust above variables
 
     let maxIterationsSlider: any;
 
-    p.setup = () => {
+    p.setup = (): void => {
         const windowSize = Math.min(p.windowHeight, p.windowWidth) - 20;
 
         p.createCanvas(windowSize, windowSize);
@@ -38,12 +40,12 @@ const sketch = new p5((p: any) => {
 
         maxIterationsSlider = p.createSlider(3, 100, 50, 1);
         maxIterationsSlider.position(20, 140);
-        maxIterationsSlider.input(() => {
+        maxIterationsSlider.input((): void => {
             maxIterations = maxIterationsSlider.value();
         });
     };
 
-    p.draw = () => {
+    p.draw = (): void => {
         p.background(51);
 
         p.loadPixels();
@@ -64,12 +66,12 @@ const sketch = new p5((p: any) => {
         p.updatePixels();
     };
 
-    p.windowResized = () => {
+    p.windowResized = (): void => {
         const windowSize = Math.min(p.windowHeight, p.windowWidth) - 20;
         p.resizeCanvas(windowSize, windowSize);
     };
 
-    p.mouseDragged = () => {
+    p.mouseDragged = (): void => {
         if (p.mouseX >= 0 && p.mouseX < p.width && p.mouseY > 0 && p.mouseY < p.height) {
             const offset = convertSliderToLog(zoomValue);
 
@@ -101,7 +103,7 @@ const sketch = new p5((p: any) => {
     const goesToInf = (c: Complex): number => {
         // this is the main function that we iterate multiple times
 
-        const iterate = (z: Complex) => {
+        const iterate = (z: Complex): Complex => {
             const square: Complex = {
                 real: z.real * z.real - z.imag * z.imag,
                 imag: 2 * z.real * z.imag,
@@ -126,9 +128,7 @@ const sketch = new p5((p: any) => {
     };
 
     // function to calculate the magnitude of any complex number
-    const magnitude = (z: Complex): number => {
-        return Math.sqrt(z.real * z.real + z.imag + z.imag);
-    };
+    const magnitude = (z: Complex): number => Math.sqrt(z.real * z.real + z.imag + z.imag);
 
     // maps a number from one range to another
     const mapRange = (
@@ -144,21 +144,21 @@ const sketch = new p5((p: any) => {
         return ((n - initialRangeStart) / initialRange) * newRange + newRangeStart;
     };
 
-    const convertSliderToLog = (val: number) => {
+    const convertSliderToLog = (val: number): number => {
         // to convert a linearly increasing value to a logarithmically increasing one
 
         const inputStart = 100;
         const inputStop = 0;
 
-        const outputStart = Math.log(1e-10);
-        const outputStop = Math.log(2.3);
+        const outputStart = zoomStart;
+        const outputStop = zoomStop;
 
         const scale = (outputStop - outputStart) / (inputStop - inputStart);
 
         return Math.exp((val - inputStart) * scale + outputStart);
     };
 
-    const showText = () => {
+    const showText = (): void => {
         // helper functions
 
         // function to setup and show all interactive elements
@@ -168,7 +168,7 @@ const sketch = new p5((p: any) => {
             y: number,
             size?: number,
             onClickCallback?: () => void
-        ) => {
+        ): void => {
             const label = document.createElement("p");
 
             label.innerText = text;
@@ -186,18 +186,18 @@ const sketch = new p5((p: any) => {
             document.body.insertAdjacentElement("beforeend", label);
         };
 
-        const zoomIn = () => {
+        const zoomIn = (): void => {
             zoomValue += 1;
             updateZoom();
         };
 
-        const zoomOut = () => {
+        const zoomOut = (): void => {
             zoomValue -= 1;
             updateZoom();
         };
 
         // calculates and changes the coordinates to
-        const updateZoom = () => {
+        const updateZoom = (): void => {
             // calculate canvas size
             const offset = convertSliderToLog(zoomValue);
 
@@ -219,7 +219,7 @@ const sketch = new p5((p: any) => {
         insertText("Max iterations", 30, 95);
 
         // keyboard shortcuts for zooming
-        document.addEventListener("keypress", (e) => {
+        document.addEventListener("keypress", (e: KeyboardEvent): void => {
             if (e.code === "Equal") zoomIn();
             if (e.code === "Minus") zoomOut();
         });

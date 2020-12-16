@@ -6,7 +6,9 @@ var sketch = new p5(function (p) {
     var maxIterations = 50;
     var escapeRadius = 500;
     var zoomValue = 0;
-    // sliders to adjust above variables
+    var zoomStart = Math.log(1e-10);
+    var zoomStop = Math.log(2.3);
+    // slider to adjust above variables
     var maxIterationsSlider;
     p.setup = function () {
         var windowSize = Math.min(p.windowHeight, p.windowWidth) - 20;
@@ -86,9 +88,7 @@ var sketch = new p5(function (p) {
         return i;
     };
     // function to calculate the magnitude of any complex number
-    var magnitude = function (z) {
-        return Math.sqrt(z.real * z.real + z.imag + z.imag);
-    };
+    var magnitude = function (z) { return Math.sqrt(z.real * z.real + z.imag + z.imag); };
     // maps a number from one range to another
     var mapRange = function (n, initialRangeStart, initialRangeStop, newRangeStart, newRangeEnd) {
         var initialRange = initialRangeStop - initialRangeStart;
@@ -99,8 +99,8 @@ var sketch = new p5(function (p) {
         // to convert a linearly increasing value to a logarithmically increasing one
         var inputStart = 100;
         var inputStop = 0;
-        var outputStart = Math.log(1e-10);
-        var outputStop = Math.log(2.3);
+        var outputStart = zoomStart;
+        var outputStop = zoomStop;
         var scale = (outputStop - outputStart) / (inputStop - inputStart);
         return Math.exp((val - inputStart) * scale + outputStart);
     };
