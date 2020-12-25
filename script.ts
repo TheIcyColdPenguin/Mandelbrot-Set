@@ -34,6 +34,7 @@ const sketch = new p5((p: any): void => {
         p.createCanvas(windowSize, windowSize);
         p.pixelDensity(1);
         p.frameRate(20);
+        p.ellipseMode(p.CENTER);
 
         p.textSize(32);
         showText();
@@ -64,6 +65,8 @@ const sketch = new p5((p: any): void => {
         }
 
         p.updatePixels();
+
+        p.ellipse(p.width / 2, p.height / 2, 0);
     };
 
     p.windowResized = (): void => {

@@ -15,6 +15,7 @@ var sketch = new p5(function (p) {
         p.createCanvas(windowSize, windowSize);
         p.pixelDensity(1);
         p.frameRate(20);
+        p.ellipseMode(p.CENTER);
         p.textSize(32);
         showText();
         maxIterationsSlider = p.createSlider(3, 100, 50, 1);
@@ -38,6 +39,7 @@ var sketch = new p5(function (p) {
             }
         }
         p.updatePixels();
+        p.ellipse(p.width / 2, p.height / 2, 0);
     };
     p.windowResized = function () {
         var windowSize = Math.min(p.windowHeight, p.windowWidth) - 20;
