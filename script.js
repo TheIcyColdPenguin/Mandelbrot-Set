@@ -1,8 +1,8 @@
 var sketch = new p5(function (p) {
     // useful interfaces
     // variables that decide how to display the set
-    // let cartCordesians: Range = { x: { start: -2, stop: 2 }, y: { start: -2, stop: 2 } };
-    var cartCordesians = { x: { start: -2.5, stop: 1.5 }, y: { start: -2, stop: 2 } };
+    // let cartesianCoords: Range = { x: { start: -2, stop: 2 }, y: { start: -2, stop: 2 } };
+    var cartesianCoords = { x: { start: -2.5, stop: 1.5 }, y: { start: -2, stop: 2 } };
     var maxIterations = 50;
     var escapeRadius = 500;
     var zoomValue = 0;
@@ -52,10 +52,10 @@ var sketch = new p5(function (p) {
                 real: offset * -2e-3 * (p.mouseX - p.pmouseX),
                 imag: offset * -2e-3 * (p.mouseY - p.pmouseY)
             };
-            cartCordesians.x.start += movement.real;
-            cartCordesians.x.stop += movement.real;
-            cartCordesians.y.start += movement.imag;
-            cartCordesians.y.stop += movement.imag;
+            cartesianCoords.x.start += movement.real;
+            cartesianCoords.x.stop += movement.real;
+            cartesianCoords.y.start += movement.imag;
+            cartesianCoords.y.stop += movement.imag;
         }
     };
     // helper functions
@@ -64,8 +64,8 @@ var sketch = new p5(function (p) {
         // input   range = [ 0, width-1]  (for each direction)
         var x = _a.x, y = _a.y;
         return {
-            real: mapRange(x, 0, p.width, cartCordesians.x.start, cartCordesians.x.stop),
-            imag: mapRange(y, 0, p.height, cartCordesians.y.start, cartCordesians.y.stop)
+            real: mapRange(x, 0, p.width, cartesianCoords.x.start, cartesianCoords.x.stop),
+            imag: mapRange(y, 0, p.height, cartesianCoords.y.start, cartesianCoords.y.stop)
         };
     };
     var goesToInf = function (c) {
@@ -136,10 +136,10 @@ var sketch = new p5(function (p) {
             // calculate canvas size
             var offset = convertSliderToLog(zoomValue);
             var prevCenter = {
-                x: (cartCordesians.x.start + cartCordesians.x.stop) / 2,
-                y: (cartCordesians.y.start + cartCordesians.y.stop) / 2
+                x: (cartesianCoords.x.start + cartesianCoords.x.stop) / 2,
+                y: (cartesianCoords.y.start + cartesianCoords.y.stop) / 2
             };
-            cartCordesians = {
+            cartesianCoords = {
                 x: { start: prevCenter.x - offset, stop: prevCenter.x + offset },
                 y: { start: prevCenter.y - offset, stop: prevCenter.y + offset }
             };
